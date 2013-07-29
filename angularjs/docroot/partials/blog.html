@@ -1,0 +1,12 @@
+<h1>Blog</h1>
+
+<div class="blog media" ng-repeat="article in articles">
+  <a class="pull-left" href="{{article.path}}">
+    <img class="media-object"  src="{{article.image.path}}" />
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">{{article.title}}</h4>
+    <small>Posted {{article.created}}</small>
+    <div class="body" ng-bind-html-unsafe="article.teaser"></div>
+  </div>
+</div>

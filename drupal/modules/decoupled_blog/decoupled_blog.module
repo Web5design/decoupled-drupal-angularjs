@@ -1,0 +1,85 @@
+<?php
+/**
+ * @file
+ * Code for the Decoupled Blog feature.
+ */
+
+include_once 'decoupled_blog.features.inc';
+
+function decoupled_blog_createapi_content_types() {
+  return array(
+    'page' => array(
+      'version' => '1.0',
+      'path' => 'pages.json',
+      'wrapper' => 'pages',
+      'row' => 'page',
+      'data' => array(
+        'properties' => array(
+          'id' => 'nid',
+          'title' => 'title',
+          'created' => 'created',
+        ),
+        'fields' => array(
+          'body' => 'body',
+        ),
+        'path' => 'path',
+      ),
+      'filters' => array(
+        'path' => 'path',
+      ),
+    ),
+    'article' => array(
+      'version' => '1.0',
+      'path' => 'articles.json',
+      'wrapper' => 'articles',
+      'row' => 'article',
+      'data' => array(
+        'properties' => array(
+          'id' => 'nid',
+          'title' => 'title',
+          'created' => 'created',
+        ),
+        'fields' => array(
+          'teaser' => 'field_teaser',
+          'body' => 'field_body',
+          'image' => 'field_image',
+        ),
+        'path' => 'path',
+      ),
+      'filters' => array(
+        'path' => 'path',
+      ),
+    ),
+  );
+}
+
+function decoupled_blog_createapi_menus() {
+  return array(
+    'main-menu' => array(
+      'version' => '1.0',
+      'path' => 'main-menu.json',
+      'wrapper' => 'links',
+      'row' => 'link',
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function decoupled_blog_menu() {
+  $items = array();
+
+  $items['blog'] = array(
+    'title' => 'Blog',
+    'page callback' => '_decoupled_blog_blank_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+  );
+
+  return $items;
+}
+
+function _decoupled_blog_blank_page() {
+  return '';
+}
